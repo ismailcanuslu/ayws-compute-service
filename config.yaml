@@ -1,0 +1,27 @@
+server:
+  port: 8001
+  read_timeout: 30s
+  write_timeout: 30s
+  body_limit: 32   # MB — function payload için büyük
+
+proxmox:
+  host: "https://proxmox.example.com:8006"
+  token_id: "root@pam!compute"
+  token_secret: ""
+  insecure_tls: true   # self-signed cert için
+  node: "pve"          # varsayılan Proxmox node adı
+
+docker:
+  # Mac'te Docker Desktop genellikle bu soketi kullanır.
+  # Eğer çalışmazsa: unix:///var/run/docker.sock (Docker Desktop → Settings → Advanced → "Allow default Docker socket path" açık olmalı)
+  host: "unix:///Users/ismailcanuslu/.docker/run/docker.sock"
+  api_version: "1.43"
+
+kubernetes:
+  kubeconfig: ""    # boşsa in-cluster config kullanılır
+  namespace: "default"
+
+serverless:
+  runtime_image: "python:3.11-slim"   # varsayılan sandbox image
+  timeout_seconds: 30
+  memory_limit_mb: 128
