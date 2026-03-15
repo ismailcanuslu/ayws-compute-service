@@ -1,0 +1,16 @@
+services:
+  compute:
+    build: .
+    container_name: ayws-compute
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.compute.rule=Host(`compute.ayws.anadoluyazilim.com.tr`)"
+      - "traefik.http.routers.compute.entrypoints=web"
+      - "traefik.http.services.compute.loadbalancer.server.port=8080"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
